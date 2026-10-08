@@ -1,0 +1,121 @@
+Clase ManejoCola
+
+    publico Cola IngresarDatos(Cola objC)
+        entero resp
+        Texto id
+        Cliente objCliente
+        imprimir("¿Desea ingresar un comprador a la fila? 1. Sí   2. No")
+        lea resp
+        mientras(resp == 1) haga
+            si(objC.IsFull() == falso) entonces
+                imprimir("Ingrese el ID del nuevo comprador:")
+                lea id
+                si(Buscar(objC, id) == falso) entonces
+                    objCliente = nuevo Cliente()
+                    objCliente = objCliente.leerDatos(id)
+                    objC.Push(objCliente)
+                    imprimir("Comprador ingresado correctamente a la fila.")
+                sino
+                    imprimir("El comprador ya existe en la fila.")
+                FinSi
+            sino
+                imprimir("La fila de espera está llena. No es posible ingresar más compradores.")
+            FinSi
+            imprimir("¿Desea ingresar otro comprador a la fila? 1. Sí   2. No")
+            lea resp
+        FinMientras
+        retornar objC
+    FinMetodo
+
+    publico cadena Imprimir(Cola objC)
+        Cola colaAux = nuevo Cola(objC.obtenerMaxsize())
+        cadena texto = ""
+        Cliente info
+        mientras(objC.IsEmpty() == falso) haga
+            info = (Cliente)objC.Pop()
+            texto = texto + "ID: " + info.obtenerIdComprador() + " | Nombre: " + info.obtenerNombre() + " | Boletos: " + info.obtenerCantidadBoletos() + " | Total: $" + info.obtenerMontoTotal() + "\n"
+            colaAux.Push(info)
+        FinMientras
+        DevolverAux(colaAux, objC)
+        retornar texto
+    FinMetodo
+
+    publico vacio DevolverAux(Cola colaAux, Cola objC)
+        mientras(colaAux.IsEmpty() == falso) haga
+            objC.Push(colaAux.Pop())
+        FinMientras
+    FinMetodo
+
+    publico booleano Buscar(Cola objC, Texto id)
+        Cola colaAux = nuevo Cola(objC.obtenerMaxsize())
+        booleano encontrado = falso
+        Cliente info
+        mientras(objC.IsEmpty() == falso) haga
+            info = (Cliente)objC.Pop()
+            si(info.obtenerIdComprador() == id) entonces
+                encontrado = verdadero
+            FinSi
+            colaAux.Push(info)
+        FinMientras
+        DevolverAux(colaAux, objC)
+        retornar encontrado
+    FinMetodo
+
+    publico Objeto Consultar(Cola objC, Texto id)
+        Cola colaAux = nuevo Cola(objC.obtenerMaxsize())
+        Objeto comprador = nulo
+        Cliente info
+        mientras(objC.IsEmpty() == falso) haga
+            info = (Cliente)objC.Pop()
+            si(info.obtenerIdComprador() == id) entonces
+                comprador = info
+            FinSi
+            colaAux.Push(info)
+        FinMientras
+        DevolverAux(colaAux, objC)
+        retornar comprador
+    FinMetodo
+
+    publico Objeto Eliminar(Cola objC, Texto id)
+        Cola colaAux = nuevo Cola(objC.obtenerMaxsize())
+        Objeto compradorEliminado = nulo
+        Cliente info
+        mientras(objC.IsEmpty() == falso) haga
+            info = (Cliente)objC.Pop()
+            si(info.obtenerIdComprador() == id) entonces
+                compradorEliminado = info
+            sino
+                colaAux.Push(info)
+            FinSi
+        FinMientras
+        DevolverAux(colaAux, objC)
+        retornar compradorEliminado
+    FinMetodo
+
+    publico vacio actualizarBoletos(Cola objC, Texto id)
+        Cola colaAux = nuevo Cola(objC.obtenerMaxsize())
+        entero cant
+        Real monto
+        booleano encontrado = falso
+        Cliente info
+        mientras(objC.IsEmpty() == falso) haga
+            info = (Cliente)objC.Pop()
+            si(info.obtenerIdComprador() == id) entonces
+                encontrado = verdadero
+                imprimir("Ingrese la nueva cantidad de boletos:")
+                lea cant
+                imprimir("Ingrese el nuevo monto total:")
+                lea monto
+                info.asignarCantidadBoletos(cant)
+                info.asignarMontoTotal(monto)
+                imprimir("La compra del comprador fue actualizada correctamente.")
+            FinSi
+            colaAux.Push(info)
+        FinMientras
+        DevolverAux(colaAux, objC)
+        si(encontrado == falso) entonces
+            imprimir("El ID del comprador no existe en la fila.")
+        FinSi
+    FinMetodo
+
+FinClase
