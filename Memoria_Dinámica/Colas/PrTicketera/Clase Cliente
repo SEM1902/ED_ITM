@@ -25,12 +25,12 @@ Clase Cliente
     publico Cliente leerDatos(Texto id)
         este.idComprador = id
         imprimir("Ingrese el nombre del comprador:")
-        lea este.nombre
+        lea nombre
         imprimir("Ingrese la cantidad de boletos a comprar:")
-        lea este.cantidadBoletos
+        lea cantidadBoletos
         imprimir("Ingrese el monto total a pagar:")
-        lea este.montoTotal
-        retornar este
+        lea montoTotal
+        retornar Cliente(id, nombre,cantidadBoletos, montoTotal)
     FinMetodo
 
     // Getters y Setters
@@ -65,5 +65,7 @@ Clase Cliente
     publico vacio asignarMontoTotal(Real monto)
         este.montoTotal = monto
     FinMetodo
+
+// Te falta crear el método toString que permite convertir a cadena los valores que maneja el objeto
 
 FinClase
