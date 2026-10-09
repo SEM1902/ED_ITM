@@ -33,6 +33,9 @@ Clase ManejoCola
         Cliente info
         mientras(objC.IsEmpty() == falso) haga
             info = (Cliente)objC.Pop()
+            // creando el método toString te ahorras llamar a cada getter de la clase
+               ejemplo: texto = texto + info.toString()
+
             texto = texto + "ID: " + info.obtenerIdComprador() + " | Nombre: " + info.obtenerNombre() + " | Boletos: " + info.obtenerCantidadBoletos() + " | Total: $" + info.obtenerMontoTotal() + "\n"
             colaAux.Push(info)
         FinMientras
@@ -53,10 +56,17 @@ Clase ManejoCola
         mientras(objC.IsEmpty() == falso) haga
             info = (Cliente)objC.Pop()
             si(info.obtenerIdComprador() == id) entonces
+                colaAux.push(info)
                 encontrado = verdadero
+                romper
+                // acá se podría romper el ciclo, pero hay que ajustar la lógica para que lo que se desencola no se 
+                  pierda
             FinSi
             colaAux.Push(info)
         FinMientras
+        mientras (objC.IsEmpty() == falso)haga
+           colaAux.push(objC.pop())
+        finMientras
         DevolverAux(colaAux, objC)
         retornar encontrado
     FinMetodo
