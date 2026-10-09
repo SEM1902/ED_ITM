@@ -1,0 +1,69 @@
+Clase Cliente
+
+    privado Texto idComprador
+    privado Texto nombre
+    privado entero cantidadBoletos
+    privado Real montoTotal
+
+    // Constructor por defecto
+    publico Cliente()
+        este.idComprador = ""
+        este.nombre = ""
+        este.cantidadBoletos = 0
+        este.montoTotal = 0.0
+    FinMetodo
+
+    // Constructor con parámetros
+    publico Cliente(Texto id, Texto nom, entero cant, Real monto)
+        este.idComprador = id
+        este.nombre = nom
+        este.cantidadBoletos = cant
+        este.montoTotal = monto
+    FinMetodo
+
+    // Método interactivo para captura de datos
+    publico Cliente leerDatos(Texto id)
+        este.idComprador = id
+        imprimir("Ingrese el nombre del comprador:")
+        lea este.nombre
+        imprimir("Ingrese la cantidad de boletos a comprar:")
+        lea este.cantidadBoletos
+        imprimir("Ingrese el monto total a pagar:")
+        lea este.montoTotal
+        retornar este
+    FinMetodo
+
+    // Getters y Setters
+    publico Texto obtenerIdComprador()
+        retornar este.idComprador
+    FinMetodo
+
+    publico vacio asignarIdComprador(Texto id)
+        este.idComprador = id
+    FinMetodo
+
+    publico Texto obtenerNombre()
+        retornar este.nombre
+    FinMetodo
+
+    publico vacio asignarNombre(Texto nom)
+        este.nombre = nom
+    FinMetodo
+
+    publico entero obtenerCantidadBoletos()
+        retornar este.cantidadBoletos
+    FinMetodo
+
+    publico vacio asignarCantidadBoletos(entero cant)
+        este.cantidadBoletos = cant
+    FinMetodo
+
+    publico Real obtenerMontoTotal()
+        retornar este.montoTotal
+    FinMetodo
+
+    publico vacio asignarMontoTotal(Real monto)
+        este.montoTotal = monto
+    FinMetodo
+
+FinClase
